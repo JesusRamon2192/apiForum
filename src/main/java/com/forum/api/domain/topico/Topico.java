@@ -1,4 +1,4 @@
-package com.forum.api.topico;
+package com.forum.api.domain.topico;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;

@@ -1,10 +1,10 @@
 package com.forum.api.controller;
 
-import com.forum.api.topico.DatosListaTopico;
-import com.forum.api.topico.DatosRegistroTopico;
-import com.forum.api.topico.DatosActualizacionTopico;
-import com.forum.api.topico.Topico;
-import com.forum.api.topico.TopicoRepository;
+import com.forum.api.domain.topico.DatosListaTopico;
+import com.forum.api.domain.topico.DatosRegistroTopico;
+import com.forum.api.domain.topico.DatosActualizacionTopico;
+import com.forum.api.domain.topico.Topico;
+import com.forum.api.domain.topico.TopicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,8 +13,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping ("/topicos")

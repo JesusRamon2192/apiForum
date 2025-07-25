@@ -1,6 +1,4 @@
-package com.forum.api.topico;
-
-import jakarta.validation.constraints.NotBlank;
+package com.forum.api.domain.topico;
 
 public record DatosListaTopico(
         Long id,

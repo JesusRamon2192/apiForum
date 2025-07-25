@@ -1,4 +1,4 @@
-package com.forum.api.topico;
+package com.forum.api.domain.topico;
 
 public record DatosActualizacionTopico(
         Long id,
