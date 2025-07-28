@@ -1,6 +1,9 @@
 package com.forum.api.controller;
 
 import com.forum.api.domain.usuario.DatosAutenticacion;
+import com.forum.api.domain.usuario.Usuario;
+import com.forum.api.infra.security.DatosTokenJWT;
+import com.forum.api.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/login")
 public class AutenticacionController {
+    @Autowired
+    private TokenService tokenService;
 
     @Autowired
     private AuthenticationManager manager;
     @PostMapping
     public ResponseEntity iniciarSesion(@RequestBody @Valid DatosAutenticacion datos) {
-        var token = new UsernamePasswordAuthenticationToken(datos.login(), datos.contrasena());
-        var autenticacion = manager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(datos.login(),
+                datos.contrasena());
+        var autenticacion = manager.authenticate(authenticationToken);
 
-        return  ResponseEntity.ok().build();
+
+        var tokenJWT = tokenService.generarToken((Usuario) autenticacion.getPrincipal());
+        return ResponseEntity.ok(new DatosTokenJWT(tokenJWT));
     }
 }
